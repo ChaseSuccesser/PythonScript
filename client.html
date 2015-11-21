@@ -1,0 +1,29 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	</head>
+
+	<body>
+		<script>
+			var socket = new WebSocket('ws://localhost:88');
+
+			socket.onopen = function(){
+				alert('socket connection success!');
+                socket.send('hello,I receive the message!');
+			};
+
+            socket.onmessage = function(event){
+                alert('receive data:'+event.data.toString());
+            };
+
+            socket.onclose = function(event){
+                alert('socket connection close!');
+            };
+            
+            //如果连接失败，发送、接收数据失败或者处理数据出现错误，browser会触发onerror事件
+            socket.onerror = function(event){
+                alert('WebSocket Error');
+            };
+		</script>
+	</body>
+<html>
