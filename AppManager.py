@@ -33,7 +33,7 @@ def restart():
 
 
 def find_app_process():
-    shell = "ps -ef | grep %s | grep java | awk 'print $2'" % sys.argv[1]
+    shell = "ps -ef | grep %s | grep java | awk '{print $2}'" % sys.argv[1]
     child = subprocess.Popen(shell, shell=True, stdout=subprocess.PIPE)
     pid = child.communicate()
     print("shell: %s" % shell)
