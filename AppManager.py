@@ -24,7 +24,7 @@ def stop():
 def status():
     pid = find_app_process()
     if pid:
-        print("%s is running" % app)
+        print("%s is running on pid: %s" % (app, pid))
     else:
         print("%s is not running" % app)
 
