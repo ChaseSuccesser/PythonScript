@@ -18,12 +18,12 @@ def start():
 
 def stop():
     pid = find_app_process()
-    if pid > 0:
+    if pid:
         subprocess.call("kill -9 %s" % str(pid), shell=True)
 
 def status():
     pid = find_app_process()
-    if pid > 0:
+    if pid:
         print("%s is running" % app)
     else:
         print("%s is not running" % app)
@@ -34,11 +34,10 @@ def restart():
 
 
 def find_app_process():
-    shell = "ps -ef | grep %s | grep java | awk '{print $2}'" % sys.argv[1]
-    child = subprocess.Popen(shell, shell=True, stdout=subprocess.PIPE)
-    pid = child.communicate()
-    print("shell: %s" % shell)
-    print("pid: %s" % pid)
+    child = subprocess.Popen("jps", shell=True, stdout=subprocess.PIPE)
+    shell_result = child.communicate()
+    is_running = shell_result[0].find(app.capitalize() + "Application") > 0
+    pid = filter(lambda str:str.find(app.capitalize() + "Application")>0, shell_result[0].split("\n"))[0].split(" ")[0] if is_running else None
     return pid
 
 
