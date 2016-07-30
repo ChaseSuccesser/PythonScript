@@ -5,6 +5,8 @@ import sys
 import subprocess
 
 if len(sys.argv) < 2:
+    print(sys.argv[0])
+    print(sys.argv[1])
     print("Usage: python AppManager.py app start|stop|status|restart")
     sys.exit(0)
 
