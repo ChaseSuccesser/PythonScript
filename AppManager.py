@@ -4,14 +4,12 @@ __author__ = 'lgx'
 import sys
 import subprocess
 
-if len(sys.argv) < 2:
-    print(sys.argv[0])
-    print(sys.argv[1])
+if len(sys.argv) < 3:
     print("Usage: python AppManager.py app start|stop|status|restart")
     sys.exit(0)
 
-app = sys.argv[0]
-action = sys.argv[1]
+app = sys.argv[1]
+action = sys.argv[2]
 
 
 def start():
