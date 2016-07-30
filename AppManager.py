@@ -36,6 +36,8 @@ def find_app_process():
     shell = "ps -ef | grep %s | grep java | awk 'print $2'" % sys.argv[1]
     child = subprocess.Popen(shell, shell=True, stdout=subprocess.PIPE)
     pid = child.communicate()
+    print("shell: %s" % shell)
+    print("pid: %s" % pid)
     return pid
 
 
@@ -47,4 +49,6 @@ elif action == "status":
     status()
 elif action == "restart":
     restart()
+elif action == "debug":
+    find_app_process()
 
