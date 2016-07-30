@@ -3,6 +3,7 @@ __author__ = 'lgx'
 
 import sys
 import subprocess
+import os
 
 if len(sys.argv) < 3:
     print("Usage: python AppManager.py app start|stop|status|restart")
@@ -34,8 +35,9 @@ def restart():
 
 def find_app_process():
     shell = "ps -ef | grep %s | grep java | awk '{print $2}'" % sys.argv[1]
-    child = subprocess.Popen(shell, shell=True, stdout=subprocess.PIPE)
-    pid = child.communicate()
+    # child = subprocess.Popen(shell, shell=True, stdout=subprocess.PIPE)
+    # pid = child.communicate()
+    pid = os.popen(shell).read()
     print("shell: %s" % shell)
     print("pid: %s" % pid)
     return pid
