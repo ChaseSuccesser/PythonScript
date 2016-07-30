@@ -6,6 +6,7 @@ import subprocess
 
 if len(sys.argv) < 2:
     print("Usage: python AppManager.py app start|stop|status|restart")
+    sys.exit(0)
 
 app = sys.argv[0]
 action = sys.argv[1]
